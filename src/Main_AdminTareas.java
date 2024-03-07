@@ -37,7 +37,7 @@ public class Main_AdminTareas extends JFrame {
 
 	/**
 	 * Create the frame.
-	 */
+	 *///RAMA CREADA
 	public Main_AdminTareas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 859, 616);
