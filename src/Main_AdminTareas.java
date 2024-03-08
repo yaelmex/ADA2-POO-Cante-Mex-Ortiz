@@ -17,7 +17,7 @@ public class Main_AdminTareas extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textAsunto;
-	//RAMA CREADA
+
 	/**
 	 * Launch the application.
 	 */
@@ -99,14 +99,18 @@ public class Main_AdminTareas extends JFrame {
 		textDescripcion.setBounds(135, 300, 224, 93);
 		contentPane.add(textDescripcion);
 		
+		JList listPendientes = new JList();
+		listPendientes.setBounds(434, 141, 187, 252);
+		contentPane.add(listPendientes);
+		
+		JList listImportancia = new JList();
+		listImportancia.setBounds(615, 141, 187, 252);
+		contentPane.add(listImportancia);
+		
 		JButton btnAgregar = new JButton("Agregar Pendiente");
 		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAgregar.setBounds(129, 443, 179, 43);
 		contentPane.add(btnAgregar);
-		
-		JList listPendientes = new JList();
-		listPendientes.setBounds(434, 141, 368, 252);
-		contentPane.add(listPendientes);
 		
 		JButton btnFiltar = new JButton("Filtrar Pendientes");
 		btnFiltar.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -122,5 +126,20 @@ public class Main_AdminTareas extends JFrame {
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewLabel_1_2.setBounds(563, 87, 111, 26);
 		contentPane.add(lblNewLabel_1_2);
+		
+		JButton btnHecho = new JButton("Pendiente Listo");
+		btnHecho.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnHecho.setBounds(536, 482, 179, 43);
+		contentPane.add(btnHecho);
+		
+		JLabel lblNewLabel_1_2_1 = new JLabel("Asunto");
+		lblNewLabel_1_2_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1_2_1.setBounds(489, 119, 111, 26);
+		contentPane.add(lblNewLabel_1_2_1);
+		
+		JLabel lblNewLabel_1_2_1_1 = new JLabel("Importancia");
+		lblNewLabel_1_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1_2_1_1.setBounds(654, 119, 111, 26);
+		contentPane.add(lblNewLabel_1_2_1_1);
 	}
 }

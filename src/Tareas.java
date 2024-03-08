@@ -1,15 +1,25 @@
+import java.util.Stack;
 
 public class Tareas {
 	private String asunto;
 	private String categoria;
 	private String importancia;
 	private String descripcion;
+	Stack <Tareas> tarea;
 	
 	public Tareas(String asunto, String categoria, String importancia, String descripcion) {
 		this.asunto = asunto;
 		this.categoria = categoria;
 		this.importancia = importancia;
 		this.descripcion = descripcion;
+	}
+	
+	public Tareas() {
+		tarea = new Stack<Tareas>();
+	}
+	
+	public void Agregar(Tareas TareaNueva) {
+		tarea.push(TareaNueva);
 	}
 	
 	public String getAsunto() {
