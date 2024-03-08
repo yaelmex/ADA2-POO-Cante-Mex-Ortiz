@@ -14,12 +14,32 @@ public class Tareas {
 		this.descripcion = descripcion;
 	}
 	
+	//Constructor vacío que inicializa el Stack
 	public Tareas() {
 		tarea = new Stack<Tareas>();
 	}
 	
+	//Método agregar
 	public void Agregar(Tareas TareaNueva) {
 		tarea.push(TareaNueva);
+	}
+	
+	//Método para marcar como hecho
+	public Stack<Tareas> hecho(String asunto){
+		Stack <Tareas> actualizados = new Stack<Tareas>();
+		for(Tareas hecho : tarea) {
+			if(hecho.getAsunto().equalsIgnoreCase(asunto)) {
+				hecho.setAsunto(null);
+				hecho.setCategoria(null);
+				hecho.setDescripcion(null);
+				hecho.setImportancia(null);
+			} else {
+				actualizados.push(hecho);
+			}
+		}
+		tarea = actualizados;
+		return tarea;
+		
 	}
 	
 	public String getAsunto() {
