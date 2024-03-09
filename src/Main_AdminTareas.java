@@ -9,6 +9,8 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 
@@ -17,6 +19,9 @@ public class Main_AdminTareas extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textAsunto;
+	//Declaración de variables_Vianey
+	private final ButtonGroup buttonGroup = new ButtonGroup();//Agrupar los botones de opciones
+	DefaultListModel modelo2 = new DefaultListModel();//Almacena la importancia de la tarea (regular o muy importante)
 
 	/**
 	 * Launch the application.
