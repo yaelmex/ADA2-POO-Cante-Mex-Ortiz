@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -21,7 +22,7 @@ public class Main_AdminTareas extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textAsunto;
-	
+	DefaultListModel modelo = new DefaultListModel(); //Declarar el ListModel
 
 	/**
 	 * Launch the application.
@@ -120,7 +121,9 @@ public class Main_AdminTareas extends JFrame {
 		JButton btnFiltar = new JButton("Filtrar Pendientes");
 		btnFiltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String seleccionar = JOptionPane.showInputDialog("Filtrar por importancia: "+"/nRegular"+"n/Muy importante");
+				String seleccionar = JOptionPane.showInputDialog("Filtrar por importancia: "+"/n- Regular"+"/n -Muy importante");
+				modelo.removeAllElements();
+				
 			}
 		});
 		btnFiltar.setFont(new Font("Tahoma", Font.BOLD, 12));
