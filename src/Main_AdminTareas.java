@@ -11,12 +11,17 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Main_AdminTareas extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textAsunto;
+	
 
 	/**
 	 * Launch the application.
@@ -113,6 +118,11 @@ public class Main_AdminTareas extends JFrame {
 		contentPane.add(btnAgregar);
 		
 		JButton btnFiltar = new JButton("Filtrar Pendientes");
+		btnFiltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String seleccionar = JOptionPane.showInputDialog("Filtrar por importancia: "+"/nRegular"+"n/Muy importante");
+			}
+		});
 		btnFiltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnFiltar.setBounds(434, 414, 179, 43);
 		contentPane.add(btnFiltar);
