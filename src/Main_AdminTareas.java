@@ -5,6 +5,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
@@ -13,6 +16,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 public class Main_AdminTareas extends JFrame {
 
@@ -122,7 +126,24 @@ public class Main_AdminTareas extends JFrame {
 		btnFiltar.setBounds(434, 414, 179, 43);
 		contentPane.add(btnFiltar);
 		
+		//Botón mostrar pendiente_Vianey
+		/*Al seleccionar una tarea(asunto) del jlist y presionar el botón mostrar pendiente
+		  este nos arroja el nombre del asunto y su descripción*/
+		 
 		JButton btnMostrar = new JButton("Mostrar Pendiente");
+		btnMostrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Tareas buscado = tarea.buscar(listPendientes.getSelectedValue().toString());/*obtiene el valor seleccionado de la lista pendientes y la utiliza 
+				para buscar la tarea con ayuda del método buscar*/
+				if(buscado != null) {//comprueba si se encontró la tarea que se seleccionó
+					
+					JOptionPane.showMessageDialog(null, buscado.getAsunto() + " " + buscado.getDescripcion());
+				} else {
+					JOptionPane.showMessageDialog(null, "El pendiente que intentas buscar no existe");
+				}	
+			}
+		});
+		
 		btnMostrar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnMostrar.setBounds(623, 414, 179, 43);
 		contentPane.add(btnMostrar);
