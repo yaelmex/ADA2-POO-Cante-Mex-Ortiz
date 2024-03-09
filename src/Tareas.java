@@ -15,13 +15,14 @@ public class Tareas {
 	}
 	//Landy
 	public Stack<Tareas> filtrar (String filtro) {
-		Stack<Tareas> filtrados = new Stack <Tareas>();
+		Stack<Tareas> filtrados = new Stack <Tareas>(); //Crear pila para las tareas
 		for (Tareas importancia : tarea) {
 			if (importancia.getImportancia().equalsIgnoreCase(filtro)
 					|| importancia.getAsunto()!= null) {
-				
+				filtrados.push(importancia);
 			}
 		}
+		return filtrados;
 	}
 	
 	
