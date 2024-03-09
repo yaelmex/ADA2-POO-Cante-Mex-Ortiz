@@ -128,7 +128,7 @@ public class Main_AdminTareas extends JFrame {
 		
 		//Botón mostrar pendiente_Vianey
 		/*Al seleccionar una tarea(asunto) del jlist y presionar el botón mostrar pendiente
-		  este nos arroja el nombre del asunto y su descripción*/
+		  este nos arroja el nombre del asunto, su descripción y su categoría*/
 		 
 		JButton btnMostrar = new JButton("Mostrar Pendiente");
 		btnMostrar.addActionListener(new ActionListener() {
@@ -137,7 +137,8 @@ public class Main_AdminTareas extends JFrame {
 				para buscar la tarea con ayuda del método buscar*/
 				if(buscado != null) {//comprueba si se encontró la tarea que se seleccionó
 					
-					JOptionPane.showMessageDialog(null, buscado.getAsunto() + " " + buscado.getDescripcion());
+					JOptionPane.showMessageDialog(null, "Asunto: " + buscado.getAsunto() + "\nDescripción del asunto: " + buscado.getDescripcion()+ 
+							"\nCategoria: " + buscado.getCategoria());
 				} else {
 					JOptionPane.showMessageDialog(null, "El pendiente que intentas buscar no existe");
 				}	
