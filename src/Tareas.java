@@ -13,6 +13,18 @@ public class Tareas {
 		this.importancia = importancia;
 		this.descripcion = descripcion;
 	}
+
+	//Método buscar realizado por Vianey
+	/*Con este método podemos buscar dentro de la pila de tareas
+	  tomando en cuenta si el asunto es regular o muy importante*/
+	public Tareas buscar(String buscar) {
+		for(Tareas asunto : tarea) {//el bucle nos permite recorrer cada tarea de la pila
+			if(asunto.getAsunto().equalsIgnoreCase(buscar)) {//compara el asunto de la tarea con el texto buscado
+				return asunto;//devuelve la tarea
+			}
+		}
+		return null;
+	}
 	
 	//Constructor vacío que inicializa el Stack
 	public Tareas() {
