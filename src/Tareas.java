@@ -22,7 +22,7 @@ public class Tareas {
 				filtrados.push(importancia); //Agregar a la pila
 			}
 		}
-		return filtrados; 
+		return filtrados; // Devolver la pila 
 	}
 	
 	
