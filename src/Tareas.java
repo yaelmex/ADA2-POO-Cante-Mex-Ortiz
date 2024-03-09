@@ -17,10 +17,11 @@ public class Tareas {
 	  tomando en cuenta si el asunto es regular o muy importante*/
 	public Tareas buscar(String buscar) {
 		for(Tareas asunto : tarea) {//el bucle nos permite recorrer cada tarea de la pila
-			if(asunto.getAsunto()) {//verifica que el asunto de la tarea en la que se encuentra sea verdadero o no
+			if(asunto.getAsunto().equalsIgnoreCase(buscar)) {//compara el asunto de la tarea con el texto buscado
 				return asunto;//devuelve la tarea
 			}
 		}
+		return null;
 	}
 	
 	public String getAsunto() {
