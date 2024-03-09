@@ -11,6 +11,11 @@ public class Tareas {
 		this.importancia = importancia;
 		this.descripcion = descripcion;
 	}
+	//Landy
+	public Stack<tareas> filtro (String filtro) {
+		
+	}
+	
 	
 	public String getAsunto() {
 		return asunto;
