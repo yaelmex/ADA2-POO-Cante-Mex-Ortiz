@@ -14,6 +14,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -57,8 +58,9 @@ public class Main_AdminTareas extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("[Aquí irá el titúlo de la app junto con su decoración tipo banner]");
+		lblNewLabel.setIcon(new ImageIcon("Banner/Banner.png"));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(0, 0, 845, 63);
+		lblNewLabel.setBounds(0, 0, 845, 82);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Agregar Pendiente Nuevo");
