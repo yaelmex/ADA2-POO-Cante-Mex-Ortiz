@@ -17,6 +17,8 @@ public class Main_AdminTareas extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textAsunto;
+	//Instanciando el constructor
+	Tareas tarea = new Tareas();
 
 	/**
 	 * Launch the application.
