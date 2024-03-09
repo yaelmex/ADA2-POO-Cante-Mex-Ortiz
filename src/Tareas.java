@@ -1,9 +1,11 @@
+import java.util.Stack;
 
 public class Tareas {
 	private String asunto;
 	private String categoria;
 	private String importancia;
 	private String descripcion;
+	Stack <Tareas> tarea;
 	
 	public Tareas(String asunto, String categoria, String importancia, String descripcion) {
 		this.asunto = asunto;
@@ -12,7 +14,7 @@ public class Tareas {
 		this.descripcion = descripcion;
 	}
 	//Landy
-	public Stack<tareas> filtro (String filtro) {
+	public Stack<Tareas> filtrar (String filtro) {
 		
 	}
 	
