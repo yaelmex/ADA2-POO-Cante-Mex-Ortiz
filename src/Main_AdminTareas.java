@@ -159,13 +159,22 @@ public class Main_AdminTareas extends JFrame {
 		lblNewLabel_1_2.setBounds(563, 87, 111, 26);
 		contentPane.add(lblNewLabel_1_2);
 		
+		/*Marca como "hecha" una tarea y 
+		 actualiza el jlist con las tareas que no fueron eliminadas*/
 		JButton btnHecho = new JButton("Pendiente Listo");
 		btnHecho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String TareaQuitar = listPendientes.getSelectedValue().toString();//obtiene el valor seleccionado de la lista y lo almacena en la variable TareaQuitar, la cual representa a que la tarea ya se realizó
 				modelo.removeAllElements();//Elimina del jlist el asunto que se seleccionó
 				modelo2.removeAllElements();//Elimina la importancia del asunto seleccionado del jlist
-				
+				Stack <Tareas> actualizados = tarea.hecho(TareaQuitar);//llama al método hecho desde la instancia de Tareas pasando lo seleccionado como argumento
+				for(Tareas actualizado : actualizados) {//recorre la lista ya actualizada (una vez que ya se eliminó la tarea seleccionada)
+					modelo.addElement(actualizado.getAsunto());
+					modelo2.addElement(actualizado.getImportancia());
+				}
+				//muestra las actualizaciones en el jlist
+				listPendientes.setModel(modelo);
+				listImportancia.setModel(modelo2);
 				
 			}
 		});
