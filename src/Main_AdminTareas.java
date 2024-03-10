@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -9,30 +8,16 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Stack;
-
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
-
 import javax.swing.DefaultListModel;
-
 import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
-
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
-
-
-import java.awt.event.ActionListener;
-import java.util.Stack;
-import java.awt.event.ActionEvent;
-
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 
 
@@ -42,8 +27,6 @@ public class Main_AdminTareas extends JFrame {
 	private JPanel contentPane;
 	private JTextField textAsunto;
 	DefaultListModel modelo = new DefaultListModel(); //Declarar el ListModel
-	DefaultListModel modelo2 = new DefaultListModel ();//Declarar el 2do ListModel
-
 	//Declaración de variables_Vianey
 	private final ButtonGroup buttonGroup = new ButtonGroup();//Agrupar los botones de opciones
 	DefaultListModel modelo2 = new DefaultListModel();//Almacena la importancia de la tarea (regular o muy importante)
@@ -186,6 +169,7 @@ public class Main_AdminTareas extends JFrame {
 					modelo2.addElement(filtro.getImportancia());
 				}
 				listPendientes.setModel(modelo); //Actualizar el List para mostrar los elementos
+				listImportancia.setModel(modelo2);
 				
 			}
 		});
