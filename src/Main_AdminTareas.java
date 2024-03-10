@@ -11,12 +11,18 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Main_AdminTareas extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textAsunto;
+	//Instanciando el constructor
+	Tareas tarea = new Tareas();
 
 	/**
 	 * Launch the application.
@@ -108,6 +114,30 @@ public class Main_AdminTareas extends JFrame {
 		contentPane.add(listImportancia);
 		
 		JButton btnAgregar = new JButton("Agregar Pendiente");
+		btnAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//LLamado del método en el botón agregar
+				String importancia;
+				String asunto = textAsunto.getText();
+				String categoria = comboCategoria.getSelectedItem().toString();
+				if(rdbtnRegular.isSelected()) {
+					importancia = rdbtnRegular.getText();
+				} else {
+					importancia = rdbtnImportante.getText();
+				}
+				String descripcion = textDescripcion.getText();
+				Tareas tareaNueva = new Tareas(asunto, categoria, importancia, descripcion);
+				tarea.Agregar(tareaNueva);
+				JOptionPane.showMessageDialog(null, "¡Pendiente agregado con éxito!");
+				textAsunto.setText("");
+				textDescripcion.setText("");
+				modelo.addElement(tarea.tarea.peek().getAsunto());
+				modelo2.addElement(tarea.tarea.peek().getImportancia());
+				listPendientes.setModel(modelo);
+				listImportancia.setModel(modelo2);
+				
+			}
+		});
 		btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnAgregar.setBounds(129, 443, 179, 43);
 		contentPane.add(btnAgregar);
