@@ -15,6 +15,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
+import java.util.Stack;
 import java.awt.event.ActionEvent;
 
 public class Main_AdminTareas extends JFrame {
@@ -23,6 +24,7 @@ public class Main_AdminTareas extends JFrame {
 	private JPanel contentPane;
 	private JTextField textAsunto;
 	DefaultListModel modelo = new DefaultListModel(); //Declarar el ListModel
+	DefaultListModel modelo2 = new DefaultListModel ();
 
 	/**
 	 * Launch the application.
@@ -123,9 +125,11 @@ public class Main_AdminTareas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String seleccionar = JOptionPane.showInputDialog("Filtrar por importancia: "+"/n- Regular"+"/n -Muy importante");
 				modelo.removeAllElements();
+				modelo2.removeAllElements();
 				Stack <Tareas> filtrado = tarea.filtrar(seleccionar);
 				for(Tareas filtro : filtrado) {
 					modelo.addElement(filtro.getAsunto());
+					modelo2.addElement(filtro.getImportancia());
 				}
 				listPendientes.setModel(modelo);
 				
