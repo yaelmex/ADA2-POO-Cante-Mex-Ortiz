@@ -123,6 +123,11 @@ public class Main_AdminTareas extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String seleccionar = JOptionPane.showInputDialog("Filtrar por importancia: "+"/n- Regular"+"/n -Muy importante");
 				modelo.removeAllElements();
+				Stack <Tareas> filtrado = tarea.filtrar(seleccionar);
+				for(Tareas filtro : filtrado) {
+					modelo.addElement(filtro.getAsunto());
+				}
+				listPendientes.setModel(modelo);
 				
 			}
 		});
