@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Stack;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -159,8 +160,17 @@ public class Main_AdminTareas extends JFrame {
 		contentPane.add(lblNewLabel_1_2);
 		
 		JButton btnHecho = new JButton("Pendiente Listo");
+		btnHecho.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String TareaQuitar = listPendientes.getSelectedValue().toString();//obtiene el valor seleccionado de la lista y lo almacena en la variable TareaQuitar, la cual representa a que la tarea ya se realizó
+				modelo.removeAllElements();//Elimina del jlist el asunto que se seleccionó
+				modelo2.removeAllElements();//Elimina la importancia del asunto seleccionado del jlist
+				
+				
+			}
+		});
 		btnHecho.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnHecho.setBounds(536, 482, 179, 43);
+		btnHecho.setBounds(530, 475, 179, 43);
 		contentPane.add(btnHecho);
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Asunto");
