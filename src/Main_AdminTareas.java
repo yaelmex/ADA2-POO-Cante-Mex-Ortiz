@@ -13,6 +13,7 @@ import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.DefaultListModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -102,14 +103,17 @@ public class Main_AdminTareas extends JFrame {
 		textAsunto.setColumns(10);
 		
 		JComboBox comboCategoria = new JComboBox();
+		comboCategoria.setModel(new DefaultComboBoxModel(new String[] {"Trabajo", "Escuela", "Hogar", "Personal"}));
 		comboCategoria.setBounds(129, 196, 230, 22);
 		contentPane.add(comboCategoria);
 		
 		JRadioButton rdbtnRegular = new JRadioButton("Regular");
+		buttonGroup.add(rdbtnRegular);
 		rdbtnRegular.setBounds(135, 246, 111, 23);
 		contentPane.add(rdbtnRegular);
 		
 		JRadioButton rdbtnImportante = new JRadioButton("Muy Importante");
+		buttonGroup.add(rdbtnImportante);
 		rdbtnImportante.setBounds(263, 246, 122, 23);
 		contentPane.add(rdbtnImportante);
 		
@@ -129,7 +133,8 @@ public class Main_AdminTareas extends JFrame {
 		JButton btnAgregar = new JButton("Agregar Pendiente");
 		btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//LLamado del método en el botón agregar
+				//LLamado del método en el botón agregar - Yael
+				//Primero se recaban los datos
 				String importancia;
 				String asunto = textAsunto.getText();
 				String categoria = comboCategoria.getSelectedItem().toString();
@@ -139,13 +144,20 @@ public class Main_AdminTareas extends JFrame {
 					importancia = rdbtnImportante.getText();
 				}
 				String descripcion = textDescripcion.getText();
+				//Segundo se crea un nuevo objeto del tipo Tareas para pasarle al método agregar
 				Tareas tareaNueva = new Tareas(asunto, categoria, importancia, descripcion);
+				//Se llama al método y se pasa el objeto creado con los atributos.
 				tarea.Agregar(tareaNueva);
+				//Se informa al usuario que se ha agregado
 				JOptionPane.showMessageDialog(null, "¡Pendiente agregado con éxito!");
+				//Se limpian los campos para agregar una tarea nueva
 				textAsunto.setText("");
 				textDescripcion.setText("");
+				//Como se agregan uno por uno siempre se toma el peek para reflejar el asunto y la
+				//importancia
 				modelo.addElement(tarea.tarea.peek().getAsunto());
 				modelo2.addElement(tarea.tarea.peek().getImportancia());
+				//Se pasa a los list los modelos ya rellenados.
 				listPendientes.setModel(modelo);
 				listImportancia.setModel(modelo2);
 				
