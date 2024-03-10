@@ -24,7 +24,7 @@ public class Main_AdminTareas extends JFrame {
 	private JPanel contentPane;
 	private JTextField textAsunto;
 	DefaultListModel modelo = new DefaultListModel(); //Declarar el ListModel
-	DefaultListModel modelo2 = new DefaultListModel ();
+	DefaultListModel modelo2 = new DefaultListModel ();//Declarar el 2do ListModel
 
 	/**
 	 * Launch the application.
@@ -123,15 +123,17 @@ public class Main_AdminTareas extends JFrame {
 		JButton btnFiltar = new JButton("Filtrar Pendientes");
 		btnFiltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String seleccionar = JOptionPane.showInputDialog("Filtrar por importancia: "+"/n- Regular"+"/n -Muy importante");
-				modelo.removeAllElements();
-				modelo2.removeAllElements();
-				Stack <Tareas> filtrado = tarea.filtrar(seleccionar);
+				String seleccionar = JOptionPane.showInputDialog("Filtrar por importancia: "//Solicitar al usuario que seleccione una condición
+						+ ""+"/n- Regular"+"/n -Muy importante");
+				modelo.removeAllElements(); //Limpiar los ListModels
+				modelo2.removeAllElements(); //Limpiar los ListModels
+				Stack <Tareas> filtrado = tarea.filtrar(seleccionar); //Filtrar las tareas según el criterio
 				for(Tareas filtro : filtrado) {
+					//Agregar las tareas a los ListModels
 					modelo.addElement(filtro.getAsunto());
 					modelo2.addElement(filtro.getImportancia());
 				}
-				listPendientes.setModel(modelo);
+				listPendientes.setModel(modelo); //Actualizar el List para mostrar los elementos
 				
 			}
 		});
