@@ -14,16 +14,26 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+
+import javax.swing.DefaultListModel;
+
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
 
 import java.awt.event.ActionListener;
+import java.util.Stack;
 import java.awt.event.ActionEvent;
+
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 
 
 public class Main_AdminTareas extends JFrame {
@@ -31,6 +41,8 @@ public class Main_AdminTareas extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textAsunto;
+	DefaultListModel modelo = new DefaultListModel(); //Declarar el ListModel
+	DefaultListModel modelo2 = new DefaultListModel ();//Declarar el 2do ListModel
 
 	//Declaración de variables_Vianey
 	private final ButtonGroup buttonGroup = new ButtonGroup();//Agrupar los botones de opciones
@@ -161,6 +173,22 @@ public class Main_AdminTareas extends JFrame {
 		contentPane.add(btnAgregar);
 		
 		JButton btnFiltar = new JButton("Filtrar Pendientes");
+		btnFiltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String seleccionar = JOptionPane.showInputDialog("Filtrar por importancia: "//Solicitar al usuario que seleccione una condición
+						+ ""+"/n- Regular"+"/n -Muy importante");
+				modelo.removeAllElements(); //Limpiar los ListModels
+				modelo2.removeAllElements(); //Limpiar los ListModels
+				Stack <Tareas> filtrado = tarea.filtrar(seleccionar); //Filtrar las tareas según el criterio
+				for(Tareas filtro : filtrado) {
+					//Agregar las tareas a los ListModels
+					modelo.addElement(filtro.getAsunto());
+					modelo2.addElement(filtro.getImportancia());
+				}
+				listPendientes.setModel(modelo); //Actualizar el List para mostrar los elementos
+				
+			}
+		});
 		btnFiltar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnFiltar.setBounds(434, 414, 179, 43);
 		contentPane.add(btnFiltar);
