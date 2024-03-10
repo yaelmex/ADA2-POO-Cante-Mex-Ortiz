@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -5,24 +6,39 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Stack;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
+import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 
 public class Main_AdminTareas extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textAsunto;
+
+	//Declaración de variables_Vianey
+	private final ButtonGroup buttonGroup = new ButtonGroup();//Agrupar los botones de opciones
+	DefaultListModel modelo2 = new DefaultListModel();//Almacena la importancia de la tarea (regular o muy importante)
+
 	//Instanciando el constructor
 	Tareas tarea = new Tareas();
+
 
 	/**
 	 * Launch the application.
@@ -48,14 +64,16 @@ public class Main_AdminTareas extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 859, 616);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 128, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("[Aquí irá el titúlo de la app junto con su decoración tipo banner]");
+		lblNewLabel.setIcon(new ImageIcon("Banner/Banner.png"));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(0, 0, 845, 63);
+		lblNewLabel.setBounds(0, 0, 845, 82);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Agregar Pendiente Nuevo");
@@ -147,7 +165,25 @@ public class Main_AdminTareas extends JFrame {
 		btnFiltar.setBounds(434, 414, 179, 43);
 		contentPane.add(btnFiltar);
 		
+		//Botón mostrar pendiente_Vianey
+		/*Al seleccionar una tarea(asunto) del jlist y presionar el botón mostrar pendiente
+		  este nos arroja el nombre del asunto, su descripción y su categoría*/
+		 
 		JButton btnMostrar = new JButton("Mostrar Pendiente");
+		btnMostrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Tareas buscado = tarea.buscar(listPendientes.getSelectedValue().toString());/*obtiene el valor seleccionado de la lista pendientes y la utiliza 
+				para buscar la tarea con ayuda del método buscar*/
+				if(buscado != null) {//comprueba si se encontró la tarea que se seleccionó
+					
+					JOptionPane.showMessageDialog(null, "Asunto: " + buscado.getAsunto() + "\nDescripción del asunto: " + buscado.getDescripcion()+ 
+							"\nCategoria: " + buscado.getCategoria());
+				} else {
+					JOptionPane.showMessageDialog(null, "El pendiente que intentas buscar no existe");
+				}	
+			}
+		});
+		
 		btnMostrar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnMostrar.setBounds(623, 414, 179, 43);
 		contentPane.add(btnMostrar);
@@ -157,9 +193,27 @@ public class Main_AdminTareas extends JFrame {
 		lblNewLabel_1_2.setBounds(563, 87, 111, 26);
 		contentPane.add(lblNewLabel_1_2);
 		
+		/*Marca como "hecha" una tarea y 
+		 actualiza el jlist con las tareas que no fueron eliminadas*/
 		JButton btnHecho = new JButton("Pendiente Listo");
+		btnHecho.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String TareaQuitar = listPendientes.getSelectedValue().toString();//obtiene el valor seleccionado de la lista y lo almacena en la variable TareaQuitar, la cual representa a que la tarea ya se realizó
+				modelo.removeAllElements();//Elimina del jlist el asunto que se seleccionó
+				modelo2.removeAllElements();//Elimina la importancia del asunto seleccionado del jlist
+				Stack <Tareas> actualizados = tarea.hecho(TareaQuitar);//llama al método hecho desde la instancia de Tareas pasando lo seleccionado como argumento
+				for(Tareas actualizado : actualizados) {//recorre la lista ya actualizada (una vez que ya se eliminó la tarea seleccionada)
+					modelo.addElement(actualizado.getAsunto());
+					modelo2.addElement(actualizado.getImportancia());
+				}
+				//muestra las actualizaciones en el jlist
+				listPendientes.setModel(modelo);
+				listImportancia.setModel(modelo2);
+				
+			}
+		});
 		btnHecho.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnHecho.setBounds(536, 482, 179, 43);
+		btnHecho.setBounds(530, 475, 179, 43);
 		contentPane.add(btnHecho);
 		
 		JLabel lblNewLabel_1_2_1 = new JLabel("Asunto");
