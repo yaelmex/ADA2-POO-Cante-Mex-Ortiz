@@ -6,16 +6,22 @@ public class Tareas {
 	private String importancia;
 	private String descripcion;
 	Stack <Tareas> tarea;
-
 	
-
-	//
-
 	public Tareas(String asunto, String categoria, String importancia, String descripcion) {
 		this.asunto = asunto;
 		this.categoria = categoria;
 		this.importancia = importancia;
 		this.descripcion = descripcion;
+	}
+
+	//Constructor vacío que inicializa el Stack - Yael
+	public Tareas() {
+		tarea = new Stack<Tareas>();
+	}
+
+	//Método agregar - Yael
+	public void Agregar(Tareas TareaNueva) {
+		tarea.push(TareaNueva); //Unicamente se llama al método push y se le pasa la tarea nueva
 	}
 
 	//Landy
@@ -44,30 +50,26 @@ public class Tareas {
 		return null;
 	}
 	
-	//Constructor vacío que inicializa el Stack
-	public Tareas() {
-		tarea = new Stack<Tareas>();
-	}
 	
-	//Método agregar
-	public void Agregar(Tareas TareaNueva) {
-		tarea.push(TareaNueva);
-	}
-	
-	//Método para marcar como hecho
+	//Método para marcar como hecho - Yael
 	public Stack<Tareas> hecho(String asunto){
-		Stack <Tareas> actualizados = new Stack<Tareas>();
+		Stack <Tareas> actualizados = new Stack<Tareas>(); //Se inicializa un nuveo Stack que alamecenará los nuevos
 		for(Tareas hecho : tarea) {
+			//Mediante un for each se crea un objeto hecho que irá comparando a aquellos en tarea
+			//Si coinciden el asunto con el parámetro dado se pone en null, o sea se "borra"
 			if(hecho.getAsunto().equalsIgnoreCase(asunto)) {
 				hecho.setAsunto(null);
 				hecho.setCategoria(null);
 				hecho.setDescripcion(null);
 				hecho.setImportancia(null);
 			} else {
+				//En caso de que no coincidan se agregan al Stack nuevo
 				actualizados.push(hecho);
 			}
 		}
+		//Finalmente se actualiza el Stack principal con los actualizados ya sin el borrado
 		tarea = actualizados;
+		//Se retorna el Stack al final
 		return tarea;
 		
 	}
